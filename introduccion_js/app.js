@@ -5,7 +5,7 @@ let boleanito = true;
 let nulo = null;
 let indefinido;
 let simbolo = Symbol();
-let numeroGrande = 1234567890123456789012345678901234567890n;
+let numeroGrande = 12345n;
 
 console.groupCollapsed("grupo");
 console.log("String:", texto);
@@ -24,7 +24,7 @@ boleanito = false;
 nulo = 2;
 indefinido = 1;
 simbolo = Symbol("hola");
-numeroGrande = 123456778901234567890n;
+numeroGrande = 54321n;
 
 console.groupCollapsed("nuevo grupo");
 console.debug("String:", texto);
