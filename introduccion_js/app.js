@@ -15,6 +15,11 @@ console.log("Null:", nulo);
 console.warn("Undefined:", indefinido);
 console.debug("Symbol:", simbolo);
 console.info("BigInt:", numeroGrande);
+console.table([
+    "number " + numero,
+    "boleanito " + boleanito
+])
+
 console.groupEnd();
 
 
