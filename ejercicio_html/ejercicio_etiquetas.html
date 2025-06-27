@@ -29,44 +29,52 @@
             </tr>
         </table>
       </article>
+
+
         
+  </section>
+
+  <section>
+    <table>
+
+      <tr>
+        <td>nombre</td>
+        <td>apellido</td>
+        <td>documento</td>
+        <td>direccion</td>
+        <td>telefono</td>
+
+        <td>altura</td>
+        <td>rh</td>
+        <td>estado civil</td>
+        <td>fecha de nacimiento</td>
+        <td>nacionalidad</td>
+
+      </tr>
+
+      <tr>
+        <td id="nombreTabla">nicolas</td>
+        <td id="apellidoTabla">villla</td>
+        <td id="documentoTabla">123456789</td>
+        <td id="direccionTabla">calle 11#02-03</td>
+
+        <td id="alturaTabla">100</td>
+        <td id="rhTabla">A+</td>
+        <td id="civilTabla">soltero</td>
+        <td id="nacimientoTabla">01/01/2000</td>
+        <td id="nacionalidadTabla">colombiano</td>
+      </tr>
+
+
+    </table>
   </section>
 
     <aside>
        <div>
-    <div>
-
-        <form action="" method="post">
-
-            <label for="nombre">nombre</label>
-            <input type="text" name="nombre" id="nombre">
-            
-            <label for="apellido">apellido</label>
-            <input type="text" name="apellido" id="apellido">
-            
-            <input type="submit" value="Enviar">
-        </form>
-
-    </div>
-
-    <div>
-
-      <table>
-
-        <caption>Lenguajes de programacion</caption>
-        <td>
-        <ul>
-          <li>Python </li>
-          <li>C</li>
-          <li>Java</li>
-        </ul>
-        </td>
-      </table>
-    </div>
 
     <div>
       <table>
-        <caption>Formacion</caption>
+        <caption id="formacionTable">Formacion</caption>
         <td>
           <ol>
             <li>Inegniería electrónica </li>
@@ -79,7 +87,7 @@
     </div>
 
     <div>
-      <table>
+      <table id="herramientasTable">
         <caption>Herramientas/frameworks</caption>
         <td>
           <dl>
@@ -98,6 +106,67 @@
           </dl>
           </td>
       </table>
+
+    </div>
+
+      <div>
+      <table>
+        <caption>nucleo familiar</caption>
+
+          <td id="nucleoTabla">
+          <dl>
+            <dt>nicolas </dt>
+            <dd>nicolas</dd>
+          </dl>
+          </td>
+
+      </table>
+
+    </div>
+
+    <div>
+      <table id="trabajoTable">
+        <caption>trabajos</caption>
+
+        <tr>
+          <td>
+          <ul><li>inetum</li></ul>
+          </td>
+          
+        </tr>
+
+        <tr>
+          <td><ul><li>coffee electronics</li></ul></td>
+        </tr>
+        
+
+      </table>
+    </div>
+
+
+        <div>
+
+        <form action="" method="post">
+
+
+            <label>nucleo familiar <input type="text" name="nucleo"></label>
+            <label>experiencia laboral <input type="text" name="trabajo"></label>
+            <label>herramientas <input type="text" name="herramientas"></label>
+            <label>formacion <input type="text" name="formacion"></label>
+
+            <label>nombre <input type="text" name="nombre"></label>
+            <label>apellido  <input type="text" name="apellido"></label>
+            <label>documento <input type="number" name="documento"></label>
+            <label>direccion <input type="text" name="direccion"></label>
+            
+            <label>altura <input type="number" name="altura"></label>
+            <label>rh <input type="text" name="rh"></label>
+            <label>estado civil <input type="text" name="estado civil"></label>
+            <label>fecha de nacimiento <input type="date" name="fecha de nacimiento"></label>
+            <label>nacionalidad <input type="text" name="nacionalidad"></label>
+            
+            <input type="submit" value="Enviar">
+        </form>
 
     </div>
 
