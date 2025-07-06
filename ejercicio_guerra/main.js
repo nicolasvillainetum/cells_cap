@@ -23,9 +23,9 @@ let registro_rojo= [];
 
 
 equipo1= generadorEquipo();
-//console.log("Equipo Rojo: ", JSON.stringify(equipo1));
+console.log("Equipo Rojo: ", equipo1);
 equipo2= generadorEquipo();
-//console.log("Equipo 2: ", equipo2);
+console.log("Equipo 2: ", equipo2);
 
 
 //let ganador = randomGenerator(0,1);
@@ -46,129 +46,144 @@ let equipo_prueba = {
     [ // Escuadrón 1
       {"nombre":"Arquero","activo":false,"vida":0,"ataque":0}, // Inactivo
       {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+      // {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+      // {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+      // {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+      // {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+      // {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+      // {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
 
     ],
-    [ // Escuadrón 1
-      {"nombre":"Arquero","activo":false,"vida":0,"ataque":0}, // Inactivo
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
-      {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+    // [ // Escuadrón 1
+    //   {"nombre":"Arquero","activo":false,"vida":0,"ataque":0}, // Inactivo
+    //   {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+    //   {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+    //   {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+    //   {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+    //   {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
+    //   {"nombre":"Arquero","activo":true,"vida":50,"ataque":15},
 
-    ],
-    [ // Escuadrón 3
-      {"nombre":"Caballero","activo":false,"vida":0,"ataque":0}, // Inactivo
-      {"nombre":"Caballero","activo":false,"vida":0,"ataque":0},
-      {"nombre":"Caballero","activo":false,"vida":0,"ataque":0},
-      {"nombre":"Caballero","activo":false,"vida":0,"ataque":0},
-      {"nombre":"Caballero","activo":false,"vida":0,"ataque":0},
-      {"nombre":"Caballero","activo":false,"vida":0,"ataque":0},
+    // ],
+    // [ // Escuadrón 3
+    //   {"nombre":"Caballero","activo":false,"vida":0,"ataque":0}, // Inactivo
+    //   {"nombre":"Caballero","activo":false,"vida":0,"ataque":0},
+    //   {"nombre":"Caballero","activo":false,"vida":0,"ataque":0},
+    //   {"nombre":"Caballero","activo":false,"vida":0,"ataque":0},
+    //   {"nombre":"Caballero","activo":false,"vida":0,"ataque":0},
+    //   {"nombre":"Caballero","activo":false,"vida":0,"ataque":0},
 
-    ]
+    // ]
   ]
 };
 
   //console.log("Equipo 1: ", equipo_prueba);
   let equipo_prueba_aux;
 
-  for (let i = 0; i < equipo_prueba.tropas.length; i++) {
-              for (let j =equipo_prueba.tropas[i].length; j > 0; j--) {
+  // for (let i = 0; i < equipo_prueba.tropas.length; i++) {
+  //             for (let j =equipo_prueba.tropas[i].length; j > 0; j--) {
 
 
-             equipo_prueba_aux= equipo_prueba.tropas[0].splice(j, 1);
-      }
-  }
+  //            equipo_prueba_aux= equipo_prueba.tropas[0].splice(j, 1);
+  //     }
+  // }
 
+  equipo_prueba.tropas[0].splice(1, 1);
+  equipo_prueba.tropas[0].splice(1, 1);
+  equipo_prueba.tropas[0].splice(1, 1);
     
-  equipo_prueba= equipo_prueba_aux;
+  //equipo_prueba= equipo_prueba_aux;
 
-  //console.log("Equipo aux: despues del splice ", equipo_prueba_aux);
-  //console.log("Equipo 1: despues del splice ", equipo_prueba);
+  console.log("Equipo aux: despues del splice ", equipo_prueba_aux);
+  console.log("Equipo aux tipo ", typeof (equipo2_aux));
+
+  if (typeof (equipo2_aux) != 'undefined') 
+{  console.log("ATAQUE EQUIPO 1");
+
+}
+
+
+
+
+
+
 }
 
 function iniciarGuerra(equipo1, equipo2) {
 
   //console.log("guerras iniciada");
-  let equipo1_aux= equipo1;
-  let equipo2_aux = equipo2;
+  let equipo1_aux = JSON.parse(JSON.stringify(equipo1)); 
+  let equipo2_aux = JSON.parse(JSON.stringify(equipo2));
 
   let ganador= false;
 
-while(!ganador){
-  console.log("ATAQUE EQUIPO 1");
-  for (let i = 0; i < equipo1.tropas.length; i++) {
-    let escuadron_act = equipo1.tropas[i];
-    for (let j = 0; j < escuadron_act.length; j++) {
+while(true){
 
+  if (tropasRestantes (equipo1_aux) > 0) 
+  {  
+    console.log("ATAQUE EQUIPO 1");
 
-      // //console.log("Nombre: " + escuadron_act[j].nombre);
-      // //console.log("Vida: " + escuadron_act[j].vida);
-      let ataque= randomGenerator(1,escuadron_act[j].ataque ); // ataque aleatorio
-      ataque = ataque * (1 - (randomGenerator(0, 30)/100)) // inclemencias del clima
+    atacarEquipo(equipo1_aux, equipo2_aux);
 
-      let escuadron_atacado=0;
-      let tropa_atacada=0;
-      
-      do{
-                if ((equipo2_aux.tropas.length == 0)){break;}
-
-        escuadron_atacado= randomGenerator(0, (equipo2_aux.tropas.length)-1);
-        tropa_atacada= randomGenerator(0, (equipo2_aux.tropas[escuadron_atacado].length)-1);
-      }
-      while( (typeof (equipo2_aux.tropas[escuadron_atacado][tropa_atacada]) =='undefined') && (equipo2_aux.tropas.length > 0) );      
-      
-
-      //console.log("Vida equipo 2 antes del ataque: " +  equipo2_aux.tropas[escuadron_atacado][tropa_atacada].vida);
-      //console.log("Tropa atacada: " , equipo2_aux.tropas[escuadron_atacado][tropa_atacada]);
-
-      
-      equipo2_aux.tropas[escuadron_atacado][tropa_atacada].vida -= ataque;
-      //console.log("Ataque: " + ataque);
-      //console.log("Tropa atacada: " , equipo2_aux.tropas[escuadron_atacado][tropa_atacada]);
-      //console.log("Vida tropa equipo 2 despues del ataque: " +  equipo2_aux.tropas[escuadron_atacado][tropa_atacada].vida);
-
-      if( equipo2_aux.tropas[escuadron_atacado][tropa_atacada].vida <= 0){ 
-        //console.log("Tropa eliminada: " + equipo2_aux.tropas[escuadron_atacado][tropa_atacada].nombre);
-        equipo2_aux.tropas[escuadron_atacado].splice(tropa_atacada, 1);
-                if ((equipo2_aux.tropas.length == 0)){break;}
-
-
-      }
-
-                    if ((equipo2_aux.tropas.length == 0)){break;}
-
-
-
+    if (tropasRestantes(equipo2_aux) <= 0) {
+      console.log("Equipo 1 ha ganado la guerra");
+      break;
     }
 
   }
 
-  //equipo2= equipo2_aux;
-
-    console.log("equipo2 despues del ataque: ", equipo2_aux);
-
-
-  if((equipo2_aux.tropas.length == 0)){
-    console.log("Equipo 1 ha ganado la guerra");
+  else {
+    console.log("Equipo 1 ha PERDIDO la guerra");
     ganador = true;
     break;
   }
 
+
+  //////////////////////////////////
+  //////////////////////////////////
+  //////////////////////////////////
+    //equipo2= equipo2_aux;
+
+  if (tropasRestantes (equipo2_aux) > 0) 
+  {  
     console.log("ATAQUE EQUIPO 2");
 
-  for (let i = 0; i < equipo2_aux.tropas.length; i++) {
-    let escuadron_act = equipo2_aux.tropas[i];
+    atacarEquipo(equipo2_aux, equipo1_aux);
+
+    if (tropasRestantes(equipo1_aux) <= 0) {
+      console.log("Equipo 2 ha ganado la guerra");
+      break;
+    }
+
+  }
+
+  else {
+    console.log("Equipo 2 ha PERDIDO la guerra");
+    ganador = true;
+    break;
+  }
+
+
+
+
+}
+
+}
+
+function tropasRestantes(equipo) {
+    let totalTropas = 0;
+    for (const escuadron of equipo.tropas) {
+        totalTropas += escuadron.length;
+    }
+    return totalTropas;
+}
+
+function atacarEquipo(equipo_atacante, equipo_defensor) {
+
+  for (let i = 0; i < equipo_atacante.tropas.length; i++) {
+    let escuadron_act = equipo_atacante.tropas[i];
+
+    //if (escuadron_act.length === 0) continue; // Salta escuadrones vacíos
     for (let j = 0; j < escuadron_act.length; j++) {
-
-
       // //console.log("Nombre: " + escuadron_act[j].nombre);
       // //console.log("Vida: " + escuadron_act[j].vida);
       let ataque= randomGenerator(1,escuadron_act[j].ataque ); // ataque aleatorio
@@ -176,57 +191,44 @@ while(!ganador){
 
       let escuadron_atacado=0;
       let tropa_atacada=0;
+
+
+
       
       do{
-
-        if ((equipo1_aux.tropas.length == 0)){break;}
-
-        escuadron_atacado= randomGenerator(0, (equipo1_aux.tropas.length)-1);
-        tropa_atacada= randomGenerator(0, (equipo1_aux.tropas[escuadron_atacado].length)-1);
+        if (tropasRestantes(equipo_defensor) == 0) {
+            return; // El equipo defensor ya no tiene tropas
+        }
+        escuadron_atacado= randomGenerator(0, (equipo_defensor.tropas.length)-1);
+        tropa_atacada= randomGenerator(0, (equipo_defensor.tropas[escuadron_atacado].length)-1);
       }
-      while( (typeof (equipo1_aux.tropas[escuadron_atacado][tropa_atacada]) =='undefined')  );      
-      
+      while (equipo_defensor.tropas[escuadron_atacado].length === 0 );  
 
-      //console.log("Vida equipo 2 antes del ataque: " +  equipo1_aux.tropas[escuadron_atacado][tropa_atacada].vida);
-      //console.log("Tropa atacada: " , equipo1_aux.tropas[escuadron_atacado][tropa_atacada]);
+
+
+      //console.log("Vida equipo 2 antes del ataque: " +  equipo_defensor.tropas[escuadron_atacado][tropa_atacada].vida);
+      //console.log("Tropa atacada: " , equipo_defensor.tropas[escuadron_atacado][tropa_atacada]);
 
       
-      equipo1_aux.tropas[escuadron_atacado][tropa_atacada].vida -= ataque;
+      equipo_defensor.tropas[escuadron_atacado][tropa_atacada].vida -= ataque;
       //console.log("Ataque: " + ataque);
-      //console.log("Tropa atacada: " , equipo1_aux.tropas[escuadron_atacado][tropa_atacada]);
-      //console.log("Vida tropa equipo 2 despues del ataque: " +  equipo1_aux.tropas[escuadron_atacado][tropa_atacada].vida);
+      //console.log("Tropa atacada: " , equipo_defensor.tropas[escuadron_atacado][tropa_atacada]);
+      //console.log("Vida tropa equipo 2 despues del ataque: " +  equipo_defensor.tropas[escuadron_atacado][tropa_atacada].vida);
 
-      if( equipo1_aux.tropas[escuadron_atacado][tropa_atacada].vida <= 0){ 
-        //console.log("Tropa eliminada: " + equipo1_aux.tropas[escuadron_atacado][tropa_atacada].nombre);
-        equipo1_aux.tropas[escuadron_atacado].splice(tropa_atacada, 1);
-
-                if ((equipo1_aux.tropas.length == 0)){break;}
-
-
+      if( equipo_defensor.tropas[escuadron_atacado][tropa_atacada].vida <= 0){ 
+        //console.log("Tropa eliminada: " + equipo_defensor.tropas[escuadron_atacado][tropa_atacada].nombre);
+        equipo_defensor.tropas[escuadron_atacado].splice(tropa_atacada, 1);
       }
-
-            if ((equipo1_aux.tropas.length == 0)){break;}
-
-
+    //equipo_defensor.tropas = equipo_defensor.tropas.filter(escuadron => escuadron.length > 0);
 
     }
 
   }
 
-    if((equipo1_aux.tropas.length == 0)){
-    console.log("Equipo 2 ha ganado la guerra");
-    ganador = true;
-    break;
-  }
 
-      console.log("equipo1 despues del ataque: ", equipo1_aux);
 
 
 }
-
-}
-
-
 
 
 function generadorEquipo(){
