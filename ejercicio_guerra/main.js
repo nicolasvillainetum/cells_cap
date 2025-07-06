@@ -16,14 +16,49 @@ let ataque_tanque = ataque_submarino * (4/14);
 let ataque_helicoptero = ataque_submarino * (5/14);
 let ataque_avion = ataque_submarino * (6/14);
 
-let registro_azul= [];
-let registro_rojo= [];
+let registro_1= 
+{
+    ataques_criticos: 0,
+    tropas_eliminadas: [
+      {
+        soldadosRegulares: 0, 
+        soldadosProfesionales: 0, 
+        soldadosElite: 0, 
+        carrosTanque: 0, 
+        helicopteros: 0, 
+        aviones: 0, 
+        submarinos: 0}
+    ],
+    ataques_efectivos: 0,
+    unidades_perdidas: 0,
+    unidades_ilesas: 0,
+    unidades_heridas: 0
+  };
+
+
+let registro_2= {
+    ataques_criticos: 0,
+    tropas_eliminadas: [
+      {
+        soldadosRegulares: 0, 
+        soldadosProfesionales: 0, 
+        soldadosElite: 0, 
+        carrosTanque: 0, 
+        helicopteros: 0, 
+        aviones: 0, 
+        submarinos: 0}
+    ],
+    ataques_efectivos: 0,
+    unidades_perdidas: 0,
+    unidades_ilesas: 0,
+    unidades_heridas: 0
+  };
 
 
 
 
 equipo1= generadorEquipo();
-console.log("Equipo Rojo: ", equipo1);
+console.log("Equipo 1: ", equipo1);
 equipo2= generadorEquipo();
 console.log("Equipo 2: ", equipo2);
 
@@ -114,18 +149,17 @@ function iniciarGuerra(equipo1, equipo2) {
   let equipo1_aux = JSON.parse(JSON.stringify(equipo1)); 
   let equipo2_aux = JSON.parse(JSON.stringify(equipo2));
 
-  let ganador= false;
-
+  let turnos =0;
 while(true){
 
   if (tropasRestantes (equipo1_aux) > 0) 
   {  
     console.log("ATAQUE EQUIPO 1");
 
-    atacarEquipo(equipo1_aux, equipo2_aux);
+    atacarEquipo(equipo1_aux, equipo2_aux, registro_1, registro_2);
 
     if (tropasRestantes(equipo2_aux) <= 0) {
-      console.log("Equipo 1 ha ganado la guerra");
+      console.log("Equipo 1 ha GANADO la guerra");
       break;
     }
 
@@ -133,7 +167,6 @@ while(true){
 
   else {
     console.log("Equipo 1 ha PERDIDO la guerra");
-    ganador = true;
     break;
   }
 
@@ -141,16 +174,15 @@ while(true){
   //////////////////////////////////
   //////////////////////////////////
   //////////////////////////////////
-    //equipo2= equipo2_aux;
 
   if (tropasRestantes (equipo2_aux) > 0) 
   {  
     console.log("ATAQUE EQUIPO 2");
 
-    atacarEquipo(equipo2_aux, equipo1_aux);
+    atacarEquipo(equipo2_aux, equipo1_aux, registro_2, registro_1);
 
     if (tropasRestantes(equipo1_aux) <= 0) {
-      console.log("Equipo 2 ha ganado la guerra");
+      console.log("Equipo 2 ha GANADO la guerra");
       break;
     }
 
@@ -158,14 +190,29 @@ while(true){
 
   else {
     console.log("Equipo 2 ha PERDIDO la guerra");
-    ganador = true;
     break;
   }
 
+  turnos++;
+  console.log("numero de turnos: " + turnos);
 
-
-
+  console.log("al equipo1 le quedan las siguientes tropas: ", tropasRestantes(equipo1_aux));
+  console.log("equipo1: ", equipo1_aux);
+  console.log("\n\n");
+  console.log("al equipo2 le quedan las siguientes tropas: ", tropasRestantes(equipo2_aux));
+  console.log("equipo2: ", equipo2_aux);
+  console.log("\n\n");
 }
+
+
+  console.log("\n\n");
+  console.log("GUERRA FINALIZADA");
+  console.log("numero total de turnos: " + turnos);
+
+  console.log("Registro del Equipo 1: ", registro_1);
+  console.log("Registro del Equipo 2: ", registro_2);
+
+  
 
 }
 
@@ -177,7 +224,7 @@ function tropasRestantes(equipo) {
     return totalTropas;
 }
 
-function atacarEquipo(equipo_atacante, equipo_defensor) {
+function atacarEquipo(equipo_atacante, equipo_defensor, registro_atacante, registro_defensor) {
 
   for (let i = 0; i < equipo_atacante.tropas.length; i++) {
     let escuadron_act = equipo_atacante.tropas[i];
@@ -187,7 +234,14 @@ function atacarEquipo(equipo_atacante, equipo_defensor) {
       // //console.log("Nombre: " + escuadron_act[j].nombre);
       // //console.log("Vida: " + escuadron_act[j].vida);
       let ataque= randomGenerator(1,escuadron_act[j].ataque ); // ataque aleatorio
+
+            if (ataque == escuadron_act[j].ataque) {
+        registro_atacante.ataques_criticos++;
+      }
+
       ataque = ataque * (1 - (randomGenerator(0, 30)/100)) // inclemencias del clima
+
+
 
       let escuadron_atacado=0;
       let tropa_atacada=0;
@@ -217,9 +271,16 @@ function atacarEquipo(equipo_atacante, equipo_defensor) {
 
       if( equipo_defensor.tropas[escuadron_atacado][tropa_atacada].vida <= 0){ 
         //console.log("Tropa eliminada: " + equipo_defensor.tropas[escuadron_atacado][tropa_atacada].nombre);
+        registro_defensor.tropas_eliminadas++;
+        let tropa_muerta = equipo_defensor.tropas[escuadron_atacado][tropa_atacada].nombre;
+        registro_atacante.tropas_eliminadas.tropa_muerta += 1;
+        registro_defensor.unidades_perdidas++;
+
         equipo_defensor.tropas[escuadron_atacado].splice(tropa_atacada, 1);
+
+
       }
-    //equipo_defensor.tropas = equipo_defensor.tropas.filter(escuadron => escuadron.length > 0);
+    equipo_defensor.tropas = equipo_defensor.tropas.filter(escuadron => escuadron.length > 0);
 
     }
 
