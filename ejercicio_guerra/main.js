@@ -9,26 +9,27 @@ let vida_tanque = Math.ceil(vida_submarino * (7/12));
 let vida_helicoptero = Math.ceil(vida_submarino * (8/12));
 let vida_avion = Math.ceil(vida_submarino * (10/12));
 
-let ataque_regular = ataque_submarino * (1/14);
-let ataque_profesional = ataque_submarino * (2/14);
-let ataque_elite = ataque_submarino * (3/14);
-let ataque_tanque = ataque_submarino * (4/14);
-let ataque_helicoptero = ataque_submarino * (5/14);
-let ataque_avion = ataque_submarino * (6/14);
+let ataque_regular = Math.ceil(ataque_submarino * (1/14));
+let ataque_profesional = Math.ceil(ataque_submarino * (2/14));
+let ataque_elite = Math.ceil(ataque_submarino * (3/14));
+let ataque_tanque = Math.ceil(ataque_submarino * (4/14));
+let ataque_helicoptero = Math.ceil(ataque_submarino * (5/14));
+let ataque_avion = Math.ceil(ataque_submarino * (6/14));
 
 let registro_1= 
 {
     ataques_criticos: 0,
-    tropas_eliminadas: [
+    tropas_eliminadas: 
       {
-        soldadosRegulares: 0, 
-        soldadosProfesionales: 0, 
-        soldadosElite: 0, 
-        carrosTanque: 0, 
-        helicopteros: 0, 
-        aviones: 0, 
-        submarinos: 0}
-    ],
+      "Soldado Regular":0,
+      "Soldado Profesional":0,
+      "Soldado Elite":0,
+      "Carro de Tanque":0,
+      "Helicoptero de Combate":0,
+      "Avion de Combate":0,
+      "Submarino":0,
+      }
+    ,
     ataques_efectivos: 0,
     unidades_perdidas: 0,
     unidades_ilesas: 0,
@@ -38,16 +39,17 @@ let registro_1=
 
 let registro_2= {
     ataques_criticos: 0,
-    tropas_eliminadas: [
+    tropas_eliminadas: 
       {
-        soldadosRegulares: 0, 
-        soldadosProfesionales: 0, 
-        soldadosElite: 0, 
-        carrosTanque: 0, 
-        helicopteros: 0, 
-        aviones: 0, 
-        submarinos: 0}
-    ],
+      "Soldado Regular":0,
+      "Soldado Profesional":0,
+      "Soldado Elite":0,
+      "Carro de Tanque":0,
+      "Helicoptero de Combate":0,
+      "Avion de Combate":0,
+      "Submarino":0,
+      }
+    ,
     ataques_efectivos: 0,
     unidades_perdidas: 0,
     unidades_ilesas: 0,
@@ -204,6 +206,9 @@ while(true){
   console.log("\n\n");
 }
 
+  unidadesHeridasIlesas(registro_1, equipo1_aux);
+  unidadesHeridasIlesas(registro_2, equipo2_aux)
+
 
   console.log("\n\n");
   console.log("GUERRA FINALIZADA");
@@ -223,6 +228,34 @@ function tropasRestantes(equipo) {
     }
     return totalTropas;
 }
+
+
+function unidadesHeridasIlesas(registro, equipo){
+      
+  const vida_inicial = {
+    "Soldado Regular": vida_regular,
+    "Soldado Profesional": vida_profesional,
+    "Soldado Elite": vida_elite,
+    "Carro de Tanque": vida_tanque,
+    "Helicoptero de Combate": vida_helicoptero,
+    "Avion de Combate": vida_avion,
+    "Submarino": vida_submarino
+    };
+
+  for (const escuadron of equipo.tropas) {
+    for (const tropa of escuadron) {
+      if (tropa.vida == vida_inicial[tropa.nombre]) {
+        registro.unidades_ilesas++;
+      } else if ((tropa.vida > 0) && (tropa.vida <= (vida_inicial[tropa.nombre] * 0.3))) {
+        registro.unidades_heridas++;
+      }
+    }
+  }
+
+
+
+}
+
 
 function atacarEquipo(equipo_atacante, equipo_defensor, registro_atacante, registro_defensor) {
 
@@ -265,15 +298,16 @@ function atacarEquipo(equipo_atacante, equipo_defensor, registro_atacante, regis
 
       
       equipo_defensor.tropas[escuadron_atacado][tropa_atacada].vida -= ataque;
+
+      registro_atacante.ataques_efectivos+=ataque;
       //console.log("Ataque: " + ataque);
       //console.log("Tropa atacada: " , equipo_defensor.tropas[escuadron_atacado][tropa_atacada]);
       //console.log("Vida tropa equipo 2 despues del ataque: " +  equipo_defensor.tropas[escuadron_atacado][tropa_atacada].vida);
 
       if( equipo_defensor.tropas[escuadron_atacado][tropa_atacada].vida <= 0){ 
         //console.log("Tropa eliminada: " + equipo_defensor.tropas[escuadron_atacado][tropa_atacada].nombre);
-        registro_defensor.tropas_eliminadas++;
         let tropa_muerta = equipo_defensor.tropas[escuadron_atacado][tropa_atacada].nombre;
-        registro_atacante.tropas_eliminadas.tropa_muerta += 1;
+        registro_atacante.tropas_eliminadas[tropa_muerta] ++;
         registro_defensor.unidades_perdidas++;
 
         equipo_defensor.tropas[escuadron_atacado].splice(tropa_atacada, 1);
