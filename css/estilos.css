@@ -1,0 +1,250 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+
+
+
+
+.section-muestra {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+/* bordes  */
+
+.box {
+    width: 200px;
+    height: 100px;
+    background-color: #e0e0e0;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.border-muestra {
+    border: 5px solid;
+    border-color: #ff6347; 
+    border-radius: 25px;
+    box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+.border-image-muestra {
+    border: 20px solid transparent;
+    border-image: url(borde.png) 100; 
+}
+
+/* fondos */
+
+.background-origin-muestra {
+    padding: 20px;
+    border: 5px dashed blue;
+    background: url(fondo.jpg);
+    background-repeat: no-repeat;
+    background-origin: content-box; 
+}
+
+.background-clip-muestra {
+    
+    padding: 20px;
+    border: 5px;
+    background-color: yellow; 
+    background-clip: content-box;
+}
+
+.background-size-muestra {
+    background-image: url(fondo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.multiple-backgrounds-muestra {
+    background-image:
+        url(fondo.jpg), 
+        url(fondo2.jpg); 
+    background-repeat: no-repeat, no-repeat;
+    background-position: top left, bottom right;
+    background-size: 100px, 100px;
+}
+
+
+/* color */
+
+.hsl-color {
+    color: hsl(245, 79%, 54%);
+}
+
+.hsla-color {
+    color: hsla(120, 85%, 76%, 0.7); 
+}
+
+.rgba-color {
+    color: rgba(255, 99, 71, 0.6); 
+}
+
+.opacidad-muestra {
+    background-color: #f1adad;
+    opacity: 0.5;
+}
+
+
+/* texto */
+
+
+.text-shadow-muestra {
+    width: 200px;
+    white-space: nowrap;
+    font-size: 2em;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgb(255, 0, 0);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.rotura-palabras {
+    width: 200px;
+    word-break: break-all;
+}
+
+.web-font-muestra {
+  font-family: myFirstFont;
+  src: url(sansation_bold.woff);
+  font-weight: bold;
+}
+
+/* interfaz */
+
+
+.box-sizing-muestra {
+    border: 10px solid purple;
+    background-color: lightblue;
+    box-sizing: content-box;
+    width: 100%;
+    padding: 5px;
+}
+
+.resize-muestra {
+    resize: both; 
+    overflow: auto;
+}
+
+.outline-muestra {
+    padding: 8px;
+    margin: 20px;
+    width: 50px;
+    outline: 2px dashed orange;
+}
+
+/* navegacion */
+
+.topnav{
+    font-style: italic;
+    color: #ff0000;
+}
+
+/* modelo caja basico */
+
+
+
+.overflow-x-muestra {
+    width: 300px;
+    height: 50px;
+    overflow-x: scroll; 
+    white-space: nowrap;
+}
+
+.overflow-y-muestra {
+    width: 200px;
+    height: 100px;
+    overflow-y: scroll; 
+}
+
+/* degradados */
+
+.linear-gradient-muestra {
+    background: linear-gradient(to right, rgb(159, 25, 25), rgb(65, 122, 206));
+}
+
+.radial-gradient-muestra {
+    background: radial-gradient(circle at center, lightblue, darkblue);
+}
+
+.repeating-linear-gradient-muestra {
+background: repeating-linear-gradient(45deg, #3f87a6, #ebf8e1 15%, #f69d3c 20%);
+}
+
+.repeating-radial-gradient-muestra {
+background: repeating-radial-gradient(#e66465, #9198e5 20%);
+}
+
+
+/* multiples columnas */
+
+.column-muestra {
+    column-count: 3; 
+    column-gap: 30px; 
+}
+
+/* discurso  */
+
+.discurso-muestra {
+  text-orientation: upright;
+}
+
+/* animaciones */
+
+.animacion-muestra {
+    background-color: dodgerblue;
+    position: relative; 
+    animation-name: mi_animacion; 
+    animation-duration: 4s; 
+    animation-iteration-count: infinite; 
+    animation-timing-function: ease-in-out; 
+}
+
+@keyframes mi_animacion {
+    0% {
+        left: 0;
+        background-color: dodgerblue;
+    }
+    50% {
+        left: 200px;
+        background-color: yellowgreen;
+    }
+    100% {
+        left: 0;
+        background-color: dodgerblue;
+    }
+}
+
+
+/* flex box */
+
+
+.flex-container {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px dashed rgb(39, 22, 219);
+}
+
+.flex-comp {
+    background-color: #00ff59;
+    padding: 15px 25px;
+    margin: 5px;
+    text-align: center;
+}
