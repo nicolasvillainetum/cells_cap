@@ -17,13 +17,44 @@
 	<div class="tarjeta">
 		<h2 id="nombre_poke">nombre pokemon</h2>
         <div class="contenedor_imagenes">
-        <img id="imagen_lateral" class="imagen" src="" alt="cargando...">		
-        <img id="imagen_frente" class="imagen"src="" alt="cargando...">
-        <img id="imagen_shiny" class="imagen" src="" alt="cargando...">
+        <img id="imagen_lateral" class="imagen" src="" alt="...">		
+        <img id="imagen_frente" class="imagen"src="" alt="...">
+        <img id="imagen_shiny" class="imagen" src="" alt="...">
         </div>
         <p id="info_poke" class="informacion">...</p>
     </div>
 </template>
+
+<div>
+<div >
+            <button type="button" class="botones_listado" id="mostrar_todos">todos</button>
+            <button type="button" class="botones_listado" id="mostrar_favoritos">favoritos</button>
+        </div>
+
+<template id="poke_listado">
+	<div class="lista">
+		<h2 > listado pokemon pokemon</h2>
+
+        
+
+        <div class="info_poke_listado">
+            <img id="imagen_frente_lst" class="imagen_lista" src="" alt="cargando...">
+            
+            <div>
+                <h3 id="nombre_poke_lst">nombre pokemon</h3>
+                <h3 id="tipo_poke_list" class="tipo_poke_list ">tipo pokemon</h3>    
+            </div>
+
+            <button type="button" id="añadir_fav" class="favorito_btn"></button>
+            
+
+        </div>
+
+
+    </div>
+</template>
+
+</div>
 
 <script src="app.js"></script>
     
