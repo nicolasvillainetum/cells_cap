@@ -1,9 +1,14 @@
-let tpl = document.getElementById('tarjeta');
-let clon = tpl.content.cloneNode(true);
-document.body.appendChild(clon);
+let poke_app = document.getElementById("poke_app"); //contenedor principal
+
+const poke_lista_div = document.getElementById("poke_lista_div"); //contenedor de la lista de pokemones
+let tpl_tarjeta = document.getElementById('tarjeta'); //contenedor de la tarjeta
+let clon_tarjeta = tpl_tarjeta.content.cloneNode(true);
+poke_app.appendChild(clon_tarjeta);
 
 let lista_pokemons = document.getElementById('poke_listado');
 let POKE_URL='https://pokeapi.co/api/v2/pokemon/';
+let pokemones_favoritos = []; //pokemones favoritos
+
 
 async function infoTarjeta(poke_id) { 
     const elemento_nombre = document.getElementById('nombre_poke');
@@ -54,6 +59,7 @@ async function listado() {
     const LIMIT = 10;
 
     let pokemones_completos = [];
+    
 
   try{  
 
@@ -77,18 +83,18 @@ async function listado() {
 }
 
 function listarPokemones(pokemones_completos){
+
+  poke_lista_div.innerHTML="";
     pokemones_completos.forEach(pokemon => vistaPreviaPokemon(pokemon));
 }
 
 function vistaPreviaPokemon(pokemon) {
     let clon_lista = lista_pokemons.content.cloneNode(true);
     const info_poke_listado = clon_lista.querySelector(".info_poke_listado");
-
-
-
     const nombre = clon_lista.getElementById('nombre_poke_lst');
     const imagen_frente = clon_lista.getElementById('imagen_frente_lst');
     const tipo_poke = clon_lista.getElementById('tipo_poke_list');
+    const add_favorito = clon_lista.getElementById("anadir_fav");
 
     nombre.textContent = pokemon.name;
     imagen_frente.src = pokemon.sprites.front_default;
@@ -102,11 +108,17 @@ function vistaPreviaPokemon(pokemon) {
       infoTarjeta(pokemon.id)
     });
 
+      add_favorito.addEventListener("click", ()=>{
+        pokemones_favoritos.push(pokemon.id);
+      });
 
-    document.body.appendChild(clon_lista);
+    poke_lista_div.appendChild(clon_lista);
 }
+
 document.addEventListener('DOMContentLoaded',()=>{
   listado();
   infoTarjeta()
 });
-//document.addEventListener('DOMContentLoaded', listado);
+
+
+document.getElementById('mostrar_todos').addEventListener('click', listado);
