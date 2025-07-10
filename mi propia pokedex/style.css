@@ -125,10 +125,9 @@
 
 /* Otros estilos existentes del boton_favorito */
 .favorito_btn {
-    width: 30px;
-    height: 30px;
-    background-color: lightgray; /* Color por defecto */
-    border: 1px solid #ccc;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #000000;
     border-radius: 50%; /* Si quieres que sea circular */
     cursor: pointer;
     transition: background-color 0.2s ease; /* Transición suave al cambiar de estado */

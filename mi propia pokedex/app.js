@@ -7,8 +7,9 @@ poke_app.appendChild(clon_tarjeta);
 
 let lista_pokemons = document.getElementById('poke_listado');
 let POKE_URL='https://pokeapi.co/api/v2/pokemon/';
-let pokemones_favoritos = []; //pokemones favoritos
+let pokemones_favoritos =   [];
 
+let pokemones_completos = [];
 
 async function infoTarjeta(poke_id) { 
     const elemento_nombre = document.getElementById('nombre_poke');
@@ -58,7 +59,7 @@ async function listado() {
     const POKE_URL_LIST='https://pokeapi.co/api/v2/pokemon/';
     const LIMIT = 10;
 
-    let pokemones_completos = [];
+    
     
 
   try{  
@@ -102,18 +103,52 @@ function vistaPreviaPokemon(pokemon) {
     const tipos = pokemon.types.map(t => t.type.name).join(', ');
     tipo_poke.textContent = tipos;
 
+    add_favorito.dataset.pokemonId = pokemon.id;
+
+       add_favorito.addEventListener("click", ()=>{
+        event.stopPropagation();
+        toggleFavorito(pokemon.id, add_favorito);
+      });
 
     info_poke_listado.addEventListener("click", ()=>{
 
       infoTarjeta(pokemon.id)
     });
 
-      add_favorito.addEventListener("click", ()=>{
-        pokemones_favoritos.push(pokemon.id);
-      });
 
     poke_lista_div.appendChild(clon_lista);
 }
+
+
+function toggleFavorito(pokemonId, boton_fav) {
+    const idNum = parseInt(pokemonId); 
+
+    const index = pokemones_favoritos.indexOf(idNum);
+
+    if (boton_fav.classList.contains('active')) {
+
+        pokemones_favoritos.splice(index, 1);
+        boton_fav.classList.remove('active');
+    } else {
+        pokemones_favoritos.push(idNum);
+        boton_fav.classList.add('active');
+    }
+
+    console.log(pokemones_favoritos);
+    localStorage.setItem('pokemones_favoritos', JSON.stringify(pokemones_favoritos));
+}
+
+async function mostrarFavoritos(){
+
+    const poke_fav = pokemones_completos.filter(pokemon => 
+        pokemones_favoritos.includes(pokemon.id)
+    );
+    
+    // Renderiza la lista filtrada de favoritos.
+    listarPokemones(poke_fav);
+}
+
+
 
 document.addEventListener('DOMContentLoaded',()=>{
   listado();
@@ -121,4 +156,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 
+
+
+
+
 document.getElementById('mostrar_todos').addEventListener('click', listado);
+
+document.getElementById('mostrar_favoritos').addEventListener('click', mostrarFavoritos);
+
